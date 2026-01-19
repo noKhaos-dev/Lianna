@@ -1339,6 +1339,11 @@ section {
     .contact-form-container {
         padding: 2rem 1.5rem;
     }
+    
+    .calendar-iframe-embedded {
+        min-height: 500px;
+        height: 500px;
+    }
 }
 
 /* Additional Animation Styles */
