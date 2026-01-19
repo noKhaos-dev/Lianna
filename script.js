@@ -351,33 +351,111 @@ window.addEventListener('scroll', () => {
     }, 150);
 });
 
-// Add smooth cursor follow effect (optional, subtle)
+// Custom Cursor Effect
+let cursor = null;
+let cursorDot = null;
 let mouseX = 0;
 let mouseY = 0;
 let cursorX = 0;
 let cursorY = 0;
+let cursorDotX = 0;
+let cursorDotY = 0;
 
+// Create custom cursor elements
+function createCustomCursor() {
+    // Only create on desktop
+    if (window.innerWidth <= 768) return;
+    
+    cursor = document.createElement('div');
+    cursor.className = 'custom-cursor';
+    document.body.appendChild(cursor);
+    
+    cursorDot = document.createElement('div');
+    cursorDot.className = 'custom-cursor-dot';
+    document.body.appendChild(cursorDot);
+}
+
+// Initialize cursor
+createCustomCursor();
+
+// Track mouse movement
 document.addEventListener('mousemove', (e) => {
     mouseX = e.clientX;
     mouseY = e.clientY;
+    
+    // Immediate update for dot (faster)
+    if (cursorDot) {
+        cursorDotX = mouseX;
+        cursorDotY = mouseY;
+        cursorDot.style.left = cursorDotX + 'px';
+        cursorDot.style.top = cursorDotY + 'px';
+    }
 });
 
+// Smooth cursor animation
 function animateCursor() {
-    cursorX += (mouseX - cursorX) * 0.1;
-    cursorY += (mouseY - cursorY) * 0.1;
-    
-    // Apply subtle parallax to hero content
-    const heroContent = document.querySelector('.hero-content');
-    if (heroContent && window.scrollY < window.innerHeight) {
-        const offsetX = (mouseX - window.innerWidth / 2) * 0.01;
-        const offsetY = (mouseY - window.innerHeight / 2) * 0.01;
-        heroContent.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+    if (cursor) {
+        // Smooth follow for main cursor (slower)
+        cursorX += (mouseX - cursorX) * 0.15;
+        cursorY += (mouseY - cursorY) * 0.15;
+        
+        cursor.style.left = cursorX + 'px';
+        cursor.style.top = cursorY + 'px';
     }
     
     requestAnimationFrame(animateCursor);
 }
 
 animateCursor();
+
+// Hover effects on interactive elements
+const interactiveElements = document.querySelectorAll('a, button, .btn, .service-card, .testimonial-card, .case-study, input, textarea');
+interactiveElements.forEach(el => {
+    el.addEventListener('mouseenter', () => {
+        if (cursor) cursor.classList.add('hover');
+        if (cursorDot) cursorDot.classList.add('hover');
+    });
+    
+    el.addEventListener('mouseleave', () => {
+        if (cursor) cursor.classList.remove('hover');
+        if (cursorDot) cursorDot.classList.remove('hover');
+    });
+    
+    el.addEventListener('mousedown', () => {
+        if (cursor) cursor.classList.add('click');
+    });
+    
+    el.addEventListener('mouseup', () => {
+        if (cursor) cursor.classList.remove('click');
+    });
+});
+
+// Hide cursor when mouse leaves window
+document.addEventListener('mouseleave', () => {
+    if (cursor) cursor.style.opacity = '0';
+    if (cursorDot) cursorDot.style.opacity = '0';
+});
+
+document.addEventListener('mouseenter', () => {
+    if (cursor) cursor.style.opacity = '1';
+    if (cursorDot) cursorDot.style.opacity = '1';
+});
+
+// Recreate cursor on resize (for mobile/desktop switching)
+let resizeTimer;
+window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+        if (window.innerWidth <= 768) {
+            if (cursor) cursor.remove();
+            if (cursorDot) cursorDot.remove();
+            cursor = null;
+            cursorDot = null;
+        } else if (!cursor) {
+            createCustomCursor();
+        }
+    }, 250);
+});
 
 // Page load animation
 window.addEventListener('load', () => {
