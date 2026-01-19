@@ -380,7 +380,7 @@ img {
 
 .hero-image-back {
     filter: blur(8px);
-    transform: translate(20px, 20px) scale(1.05);
+    transform: translate(35px, 35px) scale(1.05);
     opacity: 0.7;
     z-index: 1;
 }
@@ -395,7 +395,7 @@ img {
 }
 
 .hero-image-wrapper:hover .hero-image-back {
-    transform: translate(25px, 25px) scale(1.07);
+    transform: translate(40px, 40px) scale(1.07);
 }
 
 .image-placeholder {
@@ -1341,11 +1341,11 @@ section {
     }
     
     .hero-image-back {
-        transform: translate(10px, 10px) scale(1.03);
+        transform: translate(15px, 15px) scale(1.03);
     }
     
     .hero-image-wrapper:hover .hero-image-back {
-        transform: translate(15px, 15px) scale(1.05);
+        transform: translate(20px, 20px) scale(1.05);
     }
     
     .hero-title {
