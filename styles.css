@@ -355,36 +355,47 @@ img {
     min-height: 500px;
 }
 
-.hero-image-placeholder {
+.hero-image-wrapper {
+    position: relative;
     width: 100%;
     height: 100%;
     min-height: 500px;
     max-height: 600px;
-    background: var(--beige-light);
-    border: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--text-light);
-    font-size: 0.875rem;
-    letter-spacing: 1px;
-    text-transform: uppercase;
+}
+
+.hero-image-back,
+.hero-image-front {
+    width: 100%;
+    height: 100%;
+    min-height: 500px;
+    max-height: 600px;
+    object-fit: cover;
+    border-radius: 15px;
+    position: absolute;
+    top: 0;
+    left: 0;
     transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     will-change: transform;
-    position: relative;
-    overflow: hidden;
 }
 
-.hero-image-placeholder::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 100%);
-    pointer-events: none;
+.hero-image-back {
+    filter: blur(8px);
+    transform: translate(20px, 20px) scale(1.05);
+    opacity: 0.7;
+    z-index: 1;
 }
 
-.hero-image-placeholder:hover {
-    transform: scale(1.02);
+.hero-image-front {
+    z-index: 2;
+    transform: translate(0, 0);
+}
+
+.hero-image-wrapper:hover .hero-image-front {
+    transform: translate(-5px, -5px) scale(1.02);
+}
+
+.hero-image-wrapper:hover .hero-image-back {
+    transform: translate(25px, 25px) scale(1.07);
 }
 
 .image-placeholder {
@@ -1167,7 +1178,13 @@ section {
         order: -1;
     }
     
-    .hero-image-placeholder {
+    .hero-image-wrapper {
+        min-height: 400px;
+        max-height: 400px;
+    }
+    
+    .hero-image-back,
+    .hero-image-front {
         min-height: 400px;
         max-height: 400px;
     }
@@ -1312,9 +1329,23 @@ section {
         min-height: 300px;
     }
     
-    .hero-image-placeholder {
+    .hero-image-wrapper {
         min-height: 300px;
         max-height: 300px;
+    }
+    
+    .hero-image-back,
+    .hero-image-front {
+        min-height: 300px;
+        max-height: 300px;
+    }
+    
+    .hero-image-back {
+        transform: translate(10px, 10px) scale(1.03);
+    }
+    
+    .hero-image-wrapper:hover .hero-image-back {
+        transform: translate(15px, 15px) scale(1.05);
     }
     
     .hero-title {
@@ -1514,19 +1545,6 @@ body.loaded {
 }
 
 /* Image Styles */
-.hero-image-placeholder {
-    width: 100%;
-    height: 100%;
-    min-height: 500px;
-    max-height: 600px;
-    object-fit: cover;
-    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-    will-change: transform;
-}
-
-.hero-image-placeholder:hover {
-    transform: scale(1.02);
-}
 
 .case-study-image .image-placeholder {
     width: 100%;
