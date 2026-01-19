@@ -1115,7 +1115,15 @@ section {
     }
     
     .services-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: 1fr;
+    }
+    
+    .service-card:nth-child(1),
+    .service-card:nth-child(2),
+    .service-card:nth-child(3),
+    .service-card:nth-child(4),
+    .service-card:nth-child(5) {
+        grid-column: 1;
     }
     
     .case-study-content {
@@ -1186,6 +1194,14 @@ section {
     
     .services-grid {
         grid-template-columns: 1fr;
+    }
+    
+    .service-card:nth-child(1),
+    .service-card:nth-child(2),
+    .service-card:nth-child(3),
+    .service-card:nth-child(4),
+    .service-card:nth-child(5) {
+        grid-column: 1;
     }
     
     .testimonials-grid {
