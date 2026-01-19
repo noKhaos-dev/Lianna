@@ -386,3 +386,44 @@ window.addEventListener('load', () => {
     }, 100);
 });
 
+// Calendar Popup Functionality
+const calendarPopup = document.getElementById('calendarPopup');
+const closeCalendarPopup = document.getElementById('closeCalendarPopup');
+const bookCallButtons = document.querySelectorAll('#bookCallBtn, #bookCallBtn2');
+
+// Open popup when clicking "Book a Discovery Call" buttons
+bookCallButtons.forEach(button => {
+    button.addEventListener('click', (e) => {
+        e.preventDefault();
+        calendarPopup.classList.add('active');
+        document.body.style.overflow = 'hidden'; // Prevent background scrolling
+    });
+});
+
+// Close popup when clicking close button
+if (closeCalendarPopup) {
+    closeCalendarPopup.addEventListener('click', () => {
+        calendarPopup.classList.remove('active');
+        document.body.style.overflow = ''; // Restore scrolling
+    });
+}
+
+// Close popup when clicking overlay
+if (calendarPopup) {
+    const overlay = calendarPopup.querySelector('.calendar-popup-overlay');
+    if (overlay) {
+        overlay.addEventListener('click', () => {
+            calendarPopup.classList.remove('active');
+            document.body.style.overflow = ''; // Restore scrolling
+        });
+    }
+}
+
+// Close popup with Escape key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && calendarPopup.classList.contains('active')) {
+        calendarPopup.classList.remove('active');
+        document.body.style.overflow = ''; // Restore scrolling
+    }
+});
+

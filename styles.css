@@ -1345,3 +1345,125 @@ body.loaded {
     opacity: 1;
 }
 
+/* Calendar Popup Styles */
+.calendar-popup {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.calendar-popup.active {
+    display: flex;
+    opacity: 1;
+    visibility: visible;
+}
+
+.calendar-popup-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+}
+
+.calendar-popup-content {
+    position: relative;
+    width: 90%;
+    max-width: 900px;
+    height: 90vh;
+    max-height: 800px;
+    margin: auto;
+    background: var(--white);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-lg);
+    display: flex;
+    flex-direction: column;
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+}
+
+.calendar-popup.active .calendar-popup-content {
+    transform: scale(1);
+}
+
+.calendar-popup-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 10001;
+    background: var(--white);
+    border: 1px solid var(--border);
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: var(--text-dark);
+    transition: all 0.3s ease;
+    line-height: 1;
+    padding: 0;
+}
+
+.calendar-popup-close:hover {
+    background: var(--brown);
+    color: var(--white);
+    border-color: var(--brown);
+    transform: rotate(90deg);
+}
+
+.calendar-iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    flex: 1;
+}
+
+/* Image Styles */
+.hero-image-placeholder {
+    width: 100%;
+    height: 100%;
+    min-height: 500px;
+    max-height: 600px;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+}
+
+.hero-image-placeholder:hover {
+    transform: scale(1.02);
+}
+
+.case-study-image .image-placeholder {
+    width: 100%;
+    max-width: 400px;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+    border: 1px solid var(--border);
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.case-study-image:hover .image-placeholder {
+    transform: scale(1.03);
+}
+
+@media (max-width: 768px) {
+    .calendar-popup-content {
+        width: 95%;
+        height: 95vh;
+        max-height: none;
+    }
+    
+    .calendar-popup-close {
+        top: 0.5rem;
+        right: 0.5rem;
+        width: 35px;
+        height: 35px;
+        font-size: 1.25rem;
+    }
+}
+
