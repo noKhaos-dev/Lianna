@@ -1026,6 +1026,15 @@ section {
     border: 1px solid var(--border);
 }
 
+.calendar-iframe-embedded {
+    width: 100%;
+    min-height: 600px;
+    height: 600px;
+    border: none;
+    border-radius: 0;
+    background: var(--white);
+}
+
 .form-title {
     font-family: 'Playfair Display', serif;
     font-size: 2rem;
