@@ -46,8 +46,11 @@ body {
     align-items: center;
     justify-content: center;
     transition: opacity 0.5s ease, visibility 0.5s ease;
+    
 }
-
+.calendar-popup-content {
+    border-radius: 20px;
+}
 .preloader.hidden {
     opacity: 0;
     visibility: hidden;
@@ -563,16 +566,10 @@ section {
     width: 100%;
     max-width: 500px;
     aspect-ratio: 4/5;
-    background: var(--beige-light);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--text-light);
-    font-size: 0.75rem;
-    letter-spacing: 1px;
-    text-transform: uppercase;
+    object-fit: cover;
     border: 1px solid var(--border);
     margin: 0 auto;
+    display: block;
 }
 
 .about-cta {
